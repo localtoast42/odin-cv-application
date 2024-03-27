@@ -11,13 +11,16 @@ export default function EditableField() {
     return (
         <>
           <div>
-            <TextDisplay />
-            <Input 
-                text={text}
-                onChange={handleChange}
-            />
+            {isEditable ? (
+                <Input 
+                    text={text}
+                    onChange={handleChange}
+                />
+            ) : (
+                <TextDisplay text={text}/>
+            )}
             <button onClick={() => setIsEditable(!isEditable)}>
-                Edit
+                {isEditable ? 'Submit' : 'Edit'}
             </button>
           </div>
         </>
@@ -35,8 +38,8 @@ function Input({ text, onChange }) {
 
 function TextDisplay({ text }) {
     return (
-        <p>
+        <span>
             {text}
-        </p>
+        </span>
     );
 }
